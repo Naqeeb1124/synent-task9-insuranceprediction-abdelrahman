@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Data & Models (Large files or sensitive data)
+data/raw/*.csv
+data/processed/*.csv
+models/*.pkl
+
+# Streamlit
+.streamlit/
+static/
+
+# IDEs
+.vscode/
+.idea/
