@@ -4,6 +4,8 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
+import subprocess
+import sys
 
 # Set page configuration
 st.set_page_config(
@@ -16,6 +18,25 @@ st.set_page_config(
 @st.cache_resource
 def load_predictor():
     model_path = os.path.join("models", "best_model.pkl")
+    if not os.path.exists(model_path):
+        # Auto-train if model is missing (useful for cloud deployments)
+        with st.status("Initializing Machine Learning Engine...", expanded=True) as status:
+            try:
+                # 1. Ensure raw data exists
+                raw_data_path = os.path.join("data", "raw", "insurance.csv")
+                if not os.path.exists(raw_data_path):
+                    st.write("Downloading raw dataset...")
+                    subprocess.run([sys.executable, "src/download_data.py"], check=True)
+                
+                # 2. Run training (which includes preprocessing)
+                st.write("Training models and optimizing performance...")
+                subprocess.run([sys.executable, "src/train.py"], check=True)
+                
+                status.update(label="Engine ready!", state="complete", expanded=False)
+            except Exception as e:
+                st.error(f"Auto-training failed: {e}")
+                return None
+                
     if not os.path.exists(model_path):
         return None
     return joblib.load(model_path)
