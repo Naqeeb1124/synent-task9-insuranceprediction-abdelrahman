@@ -1,6 +1,8 @@
 # Synent Technologies — Data Science Internship Program
 ## Task 9: End-to-End Data Science Project (Medical Insurance Premium Prediction)
 
+**Live Demo:** [HealthSure Insurance Predictor](https://naqeeb1124-synent-task9-insuranceprediction-abdelrah-app-xiynip.streamlit.app/)
+
 [![Python Version](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/)
 [![Framework](https://img.shields.io/badge/deployment-Streamlit-FF4B4B.svg)](https://streamlit.io/)
 [![Machine Learning](https://img.shields.io/badge/ML-Scikit--Learn-F7931E.svg)](https://scikit-learn.org/)
